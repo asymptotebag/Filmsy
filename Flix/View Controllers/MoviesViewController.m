@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -27,6 +28,9 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 //    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    
+    [self.activityIndicator startAnimating];
+    
     [self fetchMovies]; // fetch movies once screen loads
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
@@ -42,7 +46,19 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         // when network call is finished
            if (error != nil) { // error happened
-               NSLog(@"%@", [error localizedDescription]);
+               NSLog(@"ERROR PRINTED HERE:%@", [error localizedDescription]);
+               if ([error code]==-1009) {
+                   // network connectivity error
+                   NSLog(@"CAUGHT NETWORK CONNECTION ERROR");
+                   UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Load Movies" message:@"The Internet connection appears to be offline." preferredStyle:UIAlertControllerStyleAlert];
+                   UIAlertAction *retryAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                       //handle try again action
+                       [self fetchMovies]; // idk recursive try again?
+                   }];
+                   [alert addAction:retryAction];
+                   
+                   [self presentViewController:alert animated:YES completion:^{}];
+               }
            }
            else { // API gave us smth back
                // Get the array of movies
