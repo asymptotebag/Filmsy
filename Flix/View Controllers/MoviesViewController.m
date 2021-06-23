@@ -48,7 +48,7 @@
                // Get the array of movies
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                
-               NSLog(@"%@", dataDictionary);
+//               NSLog(@"%@", dataDictionary);
                
                self.movies = dataDictionary[@"results"]; // Store the movies in a property to use elsewhere
                for (NSDictionary *movie in self.movies) {
