@@ -19,6 +19,8 @@
 		7C6F12E8268380AA00325666 /* MoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6F12E7268380AA00325666 /* MoviesViewController.m */; };
 		7C6F12ED2683A01C00325666 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6F12EC2683A01C00325666 /* MovieCell.m */; };
 		7C6F12F02683C78500325666 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6F12EF2683C78500325666 /* DetailsViewController.m */; };
+		7C6F12F32683EEF300325666 /* MoviesGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6F12F22683EEF300325666 /* MoviesGridViewController.m */; };
+		7C6F12F62683F1B000325666 /* MovieCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6F12F52683F1B000325666 /* MovieCollectionCell.m */; };
 		96B0B9E81709641943EA6F29 /* Pods_Flix_FlixUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8231EB978CA96E02F3E0190 /* Pods_Flix_FlixUITests.framework */; };
 		E1DA3EF402401980B69193C3 /* Pods_FlixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A86C00350C5D5B49841FA07 /* Pods_FlixTests.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +67,10 @@
 		7C6F12EC2683A01C00325666 /* MovieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
 		7C6F12EE2683C78500325666 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		7C6F12EF2683C78500325666 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		7C6F12F12683EEF300325666 /* MoviesGridViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoviesGridViewController.h; sourceTree = "<group>"; };
+		7C6F12F22683EEF300325666 /* MoviesGridViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoviesGridViewController.m; sourceTree = "<group>"; };
+		7C6F12F42683F1B000325666 /* MovieCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCollectionCell.h; sourceTree = "<group>"; };
+		7C6F12F52683F1B000325666 /* MovieCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCollectionCell.m; sourceTree = "<group>"; };
 		93011B392B84263085F27A6E /* Pods-FlixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlixTests.debug.xcconfig"; path = "Target Support Files/Pods-FlixTests/Pods-FlixTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A02A38412AC075E307FBF72A /* Pods_Flix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA86986AA29B14D27A9824A5 /* Pods-Flix-FlixUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flix-FlixUITests.release.xcconfig"; path = "Target Support Files/Pods-Flix-FlixUITests/Pods-Flix-FlixUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +194,8 @@
 			children = (
 				7C6F12EB2683A01C00325666 /* MovieCell.h */,
 				7C6F12EC2683A01C00325666 /* MovieCell.m */,
+				7C6F12F42683F1B000325666 /* MovieCollectionCell.h */,
+				7C6F12F52683F1B000325666 /* MovieCollectionCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -197,6 +205,8 @@
 			children = (
 				7C6F12E6268380AA00325666 /* MoviesViewController.h */,
 				7C6F12E7268380AA00325666 /* MoviesViewController.m */,
+				7C6F12F12683EEF300325666 /* MoviesGridViewController.h */,
+				7C6F12F22683EEF300325666 /* MoviesGridViewController.m */,
 				7C6F12EE2683C78500325666 /* DetailsViewController.h */,
 				7C6F12EF2683C78500325666 /* DetailsViewController.m */,
 			);
@@ -444,8 +454,10 @@
 				7C6F12ED2683A01C00325666 /* MovieCell.m in Sources */,
 				7C6F12E8268380AA00325666 /* MoviesViewController.m in Sources */,
 				7C6F12F02683C78500325666 /* DetailsViewController.m in Sources */,
+				7C6F12F62683F1B000325666 /* MovieCollectionCell.m in Sources */,
 				7C6F12C42683788600325666 /* main.m in Sources */,
 				7C6F12B62683788500325666 /* SceneDelegate.m in Sources */,
+				7C6F12F32683EEF300325666 /* MoviesGridViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
