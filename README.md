@@ -43,7 +43,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 Here's a walkthrough of implemented user stories. The gifs showcase, in order:
 
 1. App icon, launch screen, Now Playing list, pull to refresh, CollectionView of movie posters, movie details screen visible from both TableView and CollectionView, customized cell selection effect, customized UI in the details screen, and images fading in (gif is sped up 2x to conserve file size, so fade-ins are no longer obvious).
-2. Better view of the loading state while waiting for movies API.
+2. Better view of the loading state while waiting for movies API. (This was recorded before I made images fade in.)
 3. Search functionality, which is case-insensitive.
 4. Offline error message. Here Filmsy is being run and recorded on a real iPhone 11.
 
