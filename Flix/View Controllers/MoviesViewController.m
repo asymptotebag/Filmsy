@@ -10,8 +10,12 @@
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
 
-@interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, strong) NSArray *filteredMovies;
+@property (nonatomic, strong) NSMutableArray *titles;
+
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -25,8 +29,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.searchBar.delegate = self;
 //    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     
     [self.activityIndicator startAnimating];
@@ -69,11 +75,14 @@
 //               NSLog(@"%@", dataDictionary);
                
                self.movies = dataDictionary[@"results"]; // Store the movies in a property to use elsewhere
-               NSLog(@"Movies fetched");
-//               for (NSDictionary *movie in self.movies) {
-//                   NSLog(@"%@", movie[@"title"]);
-//               }
+               self.filteredMovies = self.movies;
                
+               self.titles = [[NSMutableArray alloc] init];
+               for (NSDictionary *movie in self.movies) {
+//                   NSLog(@"%@", movie[@"title"]);
+                   [self.titles addObject:movie[@"title"]];
+               }
+               NSLog(@"Movies fetched");
                [self.tableView reloadData]; // Reload your table view data
            }
             [self.refreshControl endRefreshing]; // need to tell the refresh animation to stop/exit refresh state
@@ -83,13 +92,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.movies.count;
+    return self.filteredMovies.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // UITableViewCell *cell = [[UITableViewCell alloc] init];
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
-    NSDictionary *movie = self.movies[indexPath.row];
+    NSDictionary *movie = self.filteredMovies[indexPath.row];
     cell.titleLabel.text = movie[@"title"];
     cell.synopsisLabel.text = movie[@"overview"];
     
@@ -126,6 +135,45 @@
     return cell;
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length != 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+            return [evaluatedObject localizedCaseInsensitiveContainsString:searchText];
+        }];
+//        self.filteredMovies = [self.movies filteredArrayUsingPredicate:predicate];
+        NSArray *filteredTitles = [self.titles filteredArrayUsingPredicate:predicate];
+        NSMutableArray *searchResults = [[NSMutableArray alloc] init]; // temporary
+        // rebuild filteredMovies. in loop, if filtered title matches movie title, add movie OBJECT (dict) to search results
+        for (NSDictionary *movie in self.movies) {
+            for (NSString *title in filteredTitles) {
+                if (title == movie[@"title"]) {
+                    // adding to search results
+                    [searchResults addObject:movie];
+                }
+            }
+        }
+        self.filteredMovies = searchResults;
+        
+    } else {
+        self.filteredMovies = self.movies;
+    }
+    [self.tableView reloadData]; // reload so only search results are shown
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = NO;
+    self.searchBar.text = @"";
+    [self.searchBar resignFirstResponder];
+    
+    // go back to viewing all movies
+    self.filteredMovies = self.movies;
+    [self.tableView reloadData];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -136,7 +184,7 @@
     // sender is a generic ios word meaning the object that fired the event, here id is the tableview cell that was tapped
     UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-    NSDictionary *movie = self.movies[indexPath.row];
+    NSDictionary *movie = self.filteredMovies[indexPath.row];
     DetailsViewController *detailsViewController = [segue destinationViewController];
     detailsViewController.movie = movie;
 }
