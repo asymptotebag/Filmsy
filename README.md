@@ -19,13 +19,13 @@ The following **required** functionality is complete:
 The following **optional** features are implemented:
 
 - [x] User can tap a poster in the collection view to see a detail screen of that movie
-- [ ] User can search for a movie.
+- [x] User can search for a movie.
 - [x] All images fade in as they are loading. Images do not fade in if they are already cached, UNLESS they are part of the CollectionView of posters. I found that the interface was much smoother if all posters faded in in the grid view, regardless of cache status.
 - [ ] User can view the large movie poster by tapping on a cell.
 - [ ] For the large poster, load the low resolution image first and then switch to the high resolution image when complete.
 - [x] Customize the selection effect of the cell. Not a big change, but I've made it a subtler gray.
 - [ ] Customize the navigation bar.
-- [ ] Customize the UI.
+- [x] Customize the UI.
 - [ ] User can view the app on various device sizes and orientations.
 - [x] Run your app on a real device.
 
