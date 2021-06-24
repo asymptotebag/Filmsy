@@ -35,11 +35,13 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
+//    [self.activityIndicator stopAnimating];
 }
 
 - (void)fetchMovies {
     // API key: 856048063001a4a1f07f6980906a4a90
     // Networking code:
+    [self.activityIndicator startAnimating];
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=856048063001a4a1f07f6980906a4a90"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -67,13 +69,15 @@
 //               NSLog(@"%@", dataDictionary);
                
                self.movies = dataDictionary[@"results"]; // Store the movies in a property to use elsewhere
-               for (NSDictionary *movie in self.movies) {
-                   NSLog(@"%@", movie[@"title"]);
-               }
+               NSLog(@"Movies fetched");
+//               for (NSDictionary *movie in self.movies) {
+//                   NSLog(@"%@", movie[@"title"]);
+//               }
                
                [self.tableView reloadData]; // Reload your table view data
            }
             [self.refreshControl endRefreshing]; // need to tell the refresh animation to stop/exit refresh state
+            [self.activityIndicator stopAnimating];
        }];
     [task resume];
 }
