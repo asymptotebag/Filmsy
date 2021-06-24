@@ -100,6 +100,11 @@
     cell.posterView.image = nil;
     [cell.posterView setImageWithURL:posterURL];
     
+    // cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    UIView *bgView = [[UIView alloc] init];
+    bgView.backgroundColor = UIColor.systemGray6Color;
+    cell.selectedBackgroundView = bgView;
+    
     return cell;
 }
 
