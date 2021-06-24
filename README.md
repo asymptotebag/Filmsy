@@ -1,6 +1,6 @@
-# Project 2 - *Flix*
+# Project 2 - *Filmsy*
 
-**Name of your app** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+**Filmsy** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
 Time spent: **X** hours spent in total
 
@@ -18,12 +18,12 @@ The following **required** functionality is complete:
 
 The following **optional** features are implemented:
 
-- [ ] User can tap a poster in the collection view to see a detail screen of that movie
+- [x] User can tap a poster in the collection view to see a detail screen of that movie
 - [ ] User can search for a movie.
-- [ ] All images fade in as they are loading.
+- [x] All images fade in as they are loading. Images do not fade in if they are already cached, UNLESS they are part of the CollectionView of posters. I found that the interface was much smoother if all posters faded in in the grid view, regardless of cache status.
 - [ ] User can view the large movie poster by tapping on a cell.
 - [ ] For the large poster, load the low resolution image first and then switch to the high resolution image when complete.
-- [ ] Customize the selection effect of the cell.
+- [x] Customize the selection effect of the cell. Not a big change, but I've made it a subtler gray.
 - [ ] Customize the navigation bar.
 - [ ] Customize the UI.
 - [ ] User can view the app on various device sizes and orientations.
@@ -35,7 +35,7 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
+1. There seems to be a lot of reused code for actions done multiple times for different objects and different view controllers. For example, in order to make all images fade in as they loaded, I needed to copy-paste a sizeable chunk of code whenever an image was displayed. It was performing nearly the exact same operation every time. I feel like there is probably a cleaner way of doing this, perhaps by extracting out the fade-in code as a separate method, but I wasn't quite familiar enough with Objective-C to try.
 2.
 
 ## Video Walkthrough

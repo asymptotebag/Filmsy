@@ -82,8 +82,21 @@
     NSString *posterURLString = movie[@"poster_path"];
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
     NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
-    cell.posterView.image = nil;
-    [cell.posterView setImageWithURL:posterURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:posterURL];
+//    cell.posterView.image = nil;
+//    [cell.posterView setImageWithURL:posterURL];
+    // try to fade images in:
+    [cell.posterView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+        // response is nil if image is cached
+//        NSLog(@"Fade in image");
+        cell.posterView.alpha = 0.0;
+        cell.posterView.image = image;
+        [UIView animateWithDuration:0.4 animations:^{
+            cell.posterView.alpha = 1.0;
+        }];
+    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+        // what to do if it fails??
+    }];
     
     return cell;
 }
