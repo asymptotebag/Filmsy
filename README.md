@@ -43,19 +43,19 @@ Please list two areas of the assignment you'd like to **discuss further with you
 Here's a walkthrough of implemented user stories. The gifs showcase, in order:
 
 1. App icon, launch screen, Now Playing list, pull to refresh, CollectionView of movie posters, movie details screen visible from both TableView and CollectionView, customized cell selection effect, customized UI in the details screen, and images fading in (gif is sped up 2x to conserve file size, so fade-ins are no longer obvious).
-2. Search functionality, which is case-insensitive.
-3. Better view of the loading state while waiting for movies API. (This was recorded before I made images fade in.)
+2. Better view of the loading state while waiting for movies API. (This was recorded before I made images fade in.)
+3. Search functionality, which is case-insensitive.
 4. Offline error message. Here Filmsy is being run and recorded on a real iPhone 11.
 5. Filmsy being run on an iPhone 12 mini, in both landscape and portrait orientation.
 
 
 ![filmsy_main](https://user-images.githubusercontent.com/43052066/123343636-20269000-d520-11eb-994c-2ac1a971a0a4.gif)
-![filmsy_search](https://user-images.githubusercontent.com/43052066/123343644-27e63480-d520-11eb-95e0-e74b060e2fa7.gif)
 ![filmsy_load](https://user-images.githubusercontent.com/43052066/123343650-2a488e80-d520-11eb-9ede-032a7c0b8722.gif)
 
+![filmsy_search](https://user-images.githubusercontent.com/43052066/123343644-27e63480-d520-11eb-95e0-e74b060e2fa7.gif)
 ![filmsy_offline](https://user-images.githubusercontent.com/43052066/123343656-2caae880-d520-11eb-9139-078ff2628f24.gif)
-![filmsy_flipper](https://user-images.githubusercontent.com/43052066/123472907-d1cbcc80-d5c5-11eb-9f9a-0a36e039919d.gif)
 
+![filmsy_flip](https://user-images.githubusercontent.com/43052066/123475080-e65d9400-d5c8-11eb-8a80-07140a915676.gif)
 
 ## Notes
 
