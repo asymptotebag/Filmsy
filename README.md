@@ -2,7 +2,7 @@
 
 **Filmsy** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **X** hours spent in total
+Time spent: **15** hours spent in total
 
 ## User Stories
 
@@ -26,7 +26,7 @@ The following **optional** features are implemented:
 - [x] Customize the selection effect of the cell. Not a big change, but I've made it a subtler gray.
 - [ ] Customize the navigation bar.
 - [x] Customize the UI.
-- [ ] User can view the app on various device sizes and orientations.
+- [x] \*User can view the app on various device sizes and orientations. Somewhat—I didn't have enough time to implement this for the movie details screen or the CollectionView screen, but the launch screen and TableView of movies now both adapt to screen size/orientation.
 - [x] Run your app on a real device.
 
 The following **additional** features are implemented:
@@ -36,28 +36,33 @@ The following **additional** features are implemented:
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
 1. There seems to be a lot of reused code for actions done multiple times for different objects and different view controllers. For example, in order to make all images fade in as they loaded, I needed to copy-paste a sizeable chunk of code whenever an image was displayed. It was performing nearly the exact same operation every time. I feel like there is probably a cleaner way of doing this, perhaps by extracting out the fade-in code as a separate method, but I wasn't quite familiar enough with Objective-C to try.
-2.
+2. I assume that I'm just not well-versed enough in Auto Layout to know how to do this, but I really wonder if there is an easy way to set the width/height of an object to be a certain percentage of the device screen's width and height. Oftentimes I don't want a fixed height or width like the constraint warnings tell me to create, but a dynamic one so that users see the same-sized content proportional to their own device screen. I know this technique is simple in CSS with web design, so I was disappointed that it didn't seem to be a readily available option in the constraint menu.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories. The gifs showcase, in order:
 
 1. App icon, launch screen, Now Playing list, pull to refresh, CollectionView of movie posters, movie details screen visible from both TableView and CollectionView, customized cell selection effect, customized UI in the details screen, and images fading in (gif is sped up 2x to conserve file size, so fade-ins are no longer obvious).
-2. Better view of the loading state while waiting for movies API. (This was recorded before I made images fade in.)
-3. Search functionality, which is case-insensitive.
+2. Search functionality, which is case-insensitive.
+3. Better view of the loading state while waiting for movies API. (This was recorded before I made images fade in.)
 4. Offline error message. Here Filmsy is being run and recorded on a real iPhone 11.
+5. Filmsy being run on an iPhone 12 mini, in both landscape and portrait orientation.
 
 
 ![filmsy_main](https://user-images.githubusercontent.com/43052066/123343636-20269000-d520-11eb-994c-2ac1a971a0a4.gif)
+![filmsy_search](https://user-images.githubusercontent.com/43052066/123343644-27e63480-d520-11eb-95e0-e74b060e2fa7.gif)
 ![filmsy_load](https://user-images.githubusercontent.com/43052066/123343650-2a488e80-d520-11eb-9ede-032a7c0b8722.gif)
 
-![filmsy_search](https://user-images.githubusercontent.com/43052066/123343644-27e63480-d520-11eb-95e0-e74b060e2fa7.gif)
 ![filmsy_offline](https://user-images.githubusercontent.com/43052066/123343656-2caae880-d520-11eb-9139-078ff2628f24.gif)
+![filmsy_flipper](https://user-images.githubusercontent.com/43052066/123472907-d1cbcc80-d5c5-11eb-9f9a-0a36e039919d.gif)
 
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+1. It was a bit tricky to figure out how to implement the network connectivity error message. I saw some third-party reachability solutions, as well as some deprecated reachability sample code from Apple, but I also read on Stack Overflow that these reachability solutions gave various errors to a lot of users. I ended up using the URL request handler to detect the specific error code for being unable to connect to the Internet, and give an error message if that error code was detected. This method worked when I put my phone on Airplane Mode and tried to load the movies.
+2. Getting Auto Layout to work in certain screens of my app was very satisfying, since I had storyboarded the UI on an iPhone 11 screen (and thus could view it properly on my personal iPhone 11), so before Auto Layout my app looked incredibly ugly on my work phone, which was disheartening. However, in other views Auto Layout was giving me a lot of trouble, particularly in the ScrollView in the movie details screen. I read on Stack Overflow that I should create a UIView inside of the ScrollView, and then place all items inside of that UIView; however, for some reason the backdropView refused to be placed inside the UIView. 
+3. I had to refactor a good amount of code to implement the searching function, but I didn't run into major trouble while doing so.
 
 ## Credits
 
